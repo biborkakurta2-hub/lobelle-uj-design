@@ -1,4 +1,3 @@
-import Csillanas from "./Csillanas";
 
 /**
  * Képhelyőrző.
@@ -23,14 +22,13 @@ export default function KepHelyorzo({
     <div
       role="img"
       aria-label={`${felirat} — fotó feltöltés alatt`}
-      className={`relative flex ${arany} w-full items-center justify-center overflow-hidden rounded-kartya border border-arany/30 bg-femes-meleg ${className}`}
+      className={`relative flex ${arany} w-full items-center justify-center overflow-hidden rounded-kartya border border-arany/30 bg-white ${className}`}
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-24 left-1/2 h-64 w-96 -translate-x-1/2 rounded-[50%] border border-arany/25"
       />
       <div className="relative px-6 text-center">
-        <Csillanas lukteto className="mx-auto h-5 w-5 text-arany/70" />
         <p className="cimke mt-3">{felirat}</p>
         <p className="mt-2 text-xs text-szilva/70">Fotó feltöltés alatt</p>
       </div>

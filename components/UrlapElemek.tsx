@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Csillanas from "./Csillanas";
 
 /** Egy űrlapmező címkével és hibaüzenettel — minden űrlap ezt használja. */
 export function Mezo({
@@ -76,7 +75,6 @@ export function GdprJelolo({ id, hiba }: { id: string; hiba?: string }) {
 export function SikerUzenet({ cim, szoveg }: { cim: string; szoveg: string }) {
   return (
     <div className="kartya-meleg text-center" role="status">
-      <Csillanas className="mx-auto h-5 w-5 text-arany" />
       <p className="cimke mt-4">Köszönjük</p>
       <p className="mt-4 font-cim text-2xl leading-snug text-szilva">{cim}</p>
       <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-szilva/75">{szoveg}</p>

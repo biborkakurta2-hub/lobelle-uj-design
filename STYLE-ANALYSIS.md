@@ -219,6 +219,14 @@ világos, meleg, rózsás-púderes felület** kerül az oldalra.
 
 ### e) A visszatérő dekoratív motívum
 
+> **Megjegyzés a végleges kivitelről:** a csillanás-motívum a megrendelő kérésére
+> kikerült az oldalról — túlságosan „generált" hatást keltett. Helyette apró
+> **mályva pont** (`components/Pont.tsx`) fut végig listajelölőként és elválasztóként,
+> mellette a hajszálvékony arany/rozé vonalak. A meleg tónusú sávok pedig nem éles
+> színblokkok, hanem a szélük felé a fehérbe halványulnak. Az alábbi eredeti
+> levezetés a tervezési gondolatmenetet dokumentálja.
+
+
 **A négyágú csillanás (`✦`)** — ez a Lobelle logójában is szerepel (a fül-szimbólum mellett),
 tehát nem kitalált elem, hanem a márka sajátja. Megjelenik:
 

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
 import OldalFejlec from "@/components/OldalFejlec";
 import Reveal from "@/components/Reveal";
 import SzekcioCim from "@/components/SzekcioCim";
@@ -41,7 +40,6 @@ export default function RolunkOldal() {
 
         <Reveal delay={120}>
           <div className="kartya-meleg relative mx-auto mt-16 max-w-3xl text-center !p-12">
-            <Csillanas lukteto className="absolute -left-3 -top-3 h-8 w-8 text-arany/70" />
             <p className="mx-auto max-w-md font-cim text-2xl leading-snug text-szilva">
               „Ha egyszer titániumot használsz, nem térsz vissza máshoz.”
             </p>
@@ -51,7 +49,7 @@ export default function RolunkOldal() {
         </Reveal>
       </section>
 
-      <section className="bg-puder">
+      <section className="szekcio-lagy">
         <div className="szekcio-szuk konteiner text-center">
           <Reveal>
             <SzekcioCim cimke="Ismerj meg minket közelebbről" cim="Így dolgozunk">

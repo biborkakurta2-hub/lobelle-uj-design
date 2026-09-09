@@ -96,6 +96,51 @@
     @apply py-16 sm:py-24;
   }
 
+  /*
+   * Lágyan beleolvadó meleg sáv.
+   * A szekció széle felé a szín teljesen átlátszóvá válik, így nincs éles
+   * színváltás a szekcióhatáron — a tónus „belehalványul” a fehérbe.
+   */
+  .szekcio-lagy {
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--szin-puder) / 0) 0%,
+      rgb(var(--szin-puder) / 0.9) 20%,
+      rgb(var(--szin-puder) / 0.9) 80%,
+      rgb(var(--szin-puder) / 0) 100%
+    );
+  }
+
+  /* Ugyanaz, egy árnyalattal melegebben — a kiemelt sávokhoz */
+  .szekcio-lagy-meleg {
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--szin-barackpir) / 0) 0%,
+      rgb(var(--szin-barackpir) / 0.55) 30%,
+      rgb(var(--szin-barackpir) / 0.55) 70%,
+      rgb(var(--szin-barackpir) / 0) 100%
+    );
+  }
+
+  /* Oldalfejléc: felül meleg, lefelé a fehérbe halványul */
+  .fejlec-lagy {
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--szin-barackpir) / 0.5) 0%,
+      rgb(var(--szin-puder) / 0.45) 55%,
+      rgb(var(--szin-puder) / 0) 100%
+    );
+  }
+
+  /* Lábléc: a tartalom felől halványul bele a meleg tónusba */
+  .lablec-lagy {
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--szin-puder) / 0) 0%,
+      rgb(var(--szin-puder) / 0.9) 22%
+    );
+  }
+
   /* ---------- Tipográfia ---------- */
 
   /* Kiskapitális szekciócímke — tágabb betűközzel, mint a testvéroldalon */
@@ -138,8 +183,10 @@
   }
 
   /* Meleg, púderes kártya — ebből van sok, ez adja az oldal karakterét */
+  /* Korábban meleg, púderes felület volt — most fehér, hogy ne törje sávokra
+     az oldalt; a megkülönböztetést az arany szegély és a lágy árnyék adja. */
   .kartya-meleg {
-    @apply rounded-kartya border border-arany/25 bg-femes-lagy p-8 shadow-csillanas
+    @apply rounded-kartya border border-arany/35 bg-white p-8 shadow-lagy
            transition-all duration-300;
   }
 

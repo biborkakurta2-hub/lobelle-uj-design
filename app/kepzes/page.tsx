@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
+import Pont from "@/components/Pont";
 import OldalFejlec from "@/components/OldalFejlec";
 import Reveal from "@/components/Reveal";
 import SzekcioCim from "@/components/SzekcioCim";
@@ -73,7 +73,7 @@ function TematikaLista({ elemek }: { elemek: { cim: string; szoveg: string }[] }
     <ul className="mt-9 space-y-7">
       {elemek.map((elem) => (
         <li key={elem.cim} className="flex gap-4">
-          <Csillanas className="mt-1.5 h-3 w-3 shrink-0 text-arany" />
+          <Pont className="mt-2.5" />
           <div>
             <h3 className="font-cim text-lg text-szilva">{elem.cim}</h3>
             <p className="mt-2 text-sm leading-relaxed text-szilva/75">{elem.szoveg}</p>
@@ -108,7 +108,7 @@ export default function KepzesOldal() {
       </section>
 
       {/* Kezdőcsomag */}
-      <section className="bg-puder">
+      <section className="szekcio-lagy">
         <div className="szekcio-szuk konteiner">
           <Reveal>
             <SzekcioCim cimke="A képzés része" cim="Közel 70 000 Ft értékű kezdőcsomag">
@@ -120,7 +120,7 @@ export default function KepzesOldal() {
             <ul className="kartya-meleg mx-auto mt-14 grid max-w-3xl gap-x-10 gap-y-4 text-sm text-szilva sm:grid-cols-2 !p-10">
               {KEZDOCSOMAG.map((elem) => (
                 <li key={elem} className="flex gap-3.5">
-                  <Csillanas className="mt-1 h-3 w-3 shrink-0 text-arany" />
+                  <Pont className="mt-2" />
                   {elem}
                 </li>
               ))}
@@ -130,12 +130,8 @@ export default function KepzesOldal() {
       </section>
 
       {/* FAR-tanúsítvány */}
-      <section className="relative overflow-hidden bg-barackpir">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[18rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-arany/40"
-        />
-        <div className="konteiner relative py-20 text-center">
+      <section className="szekcio-lagy-meleg">
+        <div className="konteiner py-20 text-center">
           <Reveal>
             <p className="cimke !text-szilva/70">Hivatalos tanúsítvány</p>
             <p className="mx-auto mt-6 max-w-2xl font-cim text-2xl leading-snug text-szilva md:text-3xl">
@@ -157,7 +153,7 @@ export default function KepzesOldal() {
 
         <ul className="mt-14 grid gap-8 sm:grid-cols-2">
           {CELKOZONSEG.map((elem, i) => (
-            <li key={elem.cim}>
+            <li key={elem.cim} className={i % 2 === 1 ? "sm:mt-14" : ""}>
               <Reveal delay={(i % 2) * 120} className="h-full">
                 <article className="kartya h-full">
                   <h3 className="font-cim text-xl text-szilva">{elem.cim}</h3>

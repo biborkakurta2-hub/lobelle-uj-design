@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Csillanas from "./Csillanas";
 
 /**
  * Szekciófejléc: kiskapitális címke csillanás-motívummal, cím, bevezető.
@@ -30,7 +29,6 @@ export default function SzekcioCim({
     <div className={`${kozepre ? "mx-auto text-center" : "text-left"} max-w-2xl ${className}`}>
       {cimke ? (
         <p className={`flex items-center gap-2.5 ${kozepre ? "justify-center" : ""}`}>
-          <Csillanas className="h-3 w-3 shrink-0 text-arany" />
           <span className="cimke">{cimke}</span>
         </p>
       ) : null}

@@ -51,21 +51,29 @@ export default function PrivatOktatasOldal() {
           <SzekcioCim cimke="Előnyök" cim="Miért érdemes privát képzést választanod?" />
         </Reveal>
 
-        <ul className="mt-14 grid gap-8 sm:grid-cols-2">
+        {/* Elbeszélő, sorszámozott felsorolás — nem kártyarács */}
+        <ol className="mx-auto mt-16 max-w-3xl">
           {ELONYOK.map((elony, i) => (
             <li key={elony.cim}>
-              <Reveal delay={(i % 2) * 120} className="h-full">
-                <article className="kartya h-full">
-                  <h3 className="font-cim text-xl text-szilva">{elony.cim}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-szilva/75">{elony.szoveg}</p>
-                </article>
+              <Reveal delay={i * 90}>
+                <div className="grid gap-4 border-t border-arany/30 py-10 last:border-b sm:grid-cols-[4rem_1fr] sm:gap-8">
+                  <span className="font-cim text-2xl text-malyva" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-cim text-xl text-szilva sm:text-2xl">{elony.cim}</h3>
+                    <p className="mt-4 text-[0.95rem] leading-[1.85] text-szilva/75">
+                      {elony.szoveg}
+                    </p>
+                  </div>
+                </div>
               </Reveal>
             </li>
           ))}
-        </ul>
+        </ol>
       </section>
 
-      <section className="bg-puder">
+      <section className="szekcio-lagy">
         <div className="szekcio-szuk konteiner">
           <Reveal>
             <div className="mx-auto max-w-3xl">

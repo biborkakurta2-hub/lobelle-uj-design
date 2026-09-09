@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Csillanas from "./Csillanas";
+import Pont from "./Pont";
 
 export type AkkordionElem = { kerdes: string; valasz: string };
 
@@ -37,11 +37,7 @@ export default function Akkordion({
                 className="flex w-full items-start justify-between gap-5 py-6 text-left transition-colors duration-300 hover:text-szilva"
               >
                 <span className="flex items-start gap-3.5">
-                  <Csillanas
-                    className={`mt-1 h-3 w-3 shrink-0 transition-colors duration-300 ${
-                      nyitva ? "text-malyva" : "text-arany"
-                    }`}
-                  />
+                  <Pont className="mt-[0.6rem]" />
                   <span className="font-cim text-lg leading-snug text-current sm:text-xl">
                     {elem.kerdes}
                   </span>

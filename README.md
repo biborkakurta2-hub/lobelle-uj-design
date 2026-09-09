@@ -78,6 +78,7 @@ Minden szerkeszthető tartalom **adatfájlokban** van, nem a komponensekbe éget
 | Életképek feliratai | `app/eletkepek/page.tsx` → `GALERIA` |
 | Űrlapok beküldési végpontja | `lib/forms.ts` → `URLAP_VEGPONT` |
 | Színek, betűköz, sarokkerekítés | `app/globals.css` → `:root` |
+| **A főoldal hero képe** | `app/page.tsx` → `HERO_KEP` és `HERO_KEP_ALT` |
 
 ### Termékek feltöltése
 
@@ -101,6 +102,7 @@ oldalra**; ami nem volt megszerezhető, az jelölt helyőrzőként szerepel:
 | --- | --- | --- |
 | **Termékadatok** (nevek, árak, variánsok) | Kategóriaoldalak „Feltöltés alatt” blokkja, `/kosar` | `data/products.ts` → `TERMEKEK` feltöltése |
 | **Termék- és életkép-fotók** | `KepHelyorzo` komponens („Fotó feltöltés alatt”) | Fotók a `public/` alá, `KepHelyorzo` → `next/image` |
+| **Hero kép** | A főoldal jobb oszlopában jelölt képhely | Fotó a `public/` alá, majd `app/page.tsx` → `HERO_KEP` |
 | **ÁSZF / Adatkezelési / Elállási tájékoztató** | A lábléc linkjei a `/kapcsolat`-ra mutatnak | `lib/navigation.ts` → `LEGAL_LINKS` + oldalak létrehozása |
 | **Képzési időpontok** | `/kepzes/idopontok` — „Időpont egyeztetés alatt” | `IDOPONTOK` tömb a valós naptárral |
 | **Űrlap-végpont** | Az űrlapok visszaigazolnak, de nem küldenek | `lib/forms.ts` → `URLAP_VEGPONT` |
@@ -129,11 +131,15 @@ A részletes levezetés a **`STYLE-ANALYSIS.md`**-ben van. Röviden:
   az elsődleges akcent (a mályva helyett)
 - **kerekebb formák:** 2–2,5 rem sarokkerekítés a 1,5 rem helyett
 - **tágabb kiskapitális betűköz:** 0,2 em a 0,14 em helyett, több fehér térrel
-- **fémes csillanás:** hajszálvékony arany/rozé elválasztók és alig látható gradiensek
-- **saját dekoratív motívum:** a négyágú **csillanás (✦)**, amely magából a Lobelle
-  logóból származik, plusz a visszatérő halvány arany ívek — a testvéroldalon ilyen nincs
+- **fémes csillanás:** hajszálvékony arany/rozé elválasztók
+- **beleolvadó szekciók:** a meleg tónusú sávok nem éles színblokkok, hanem a szélük
+  felé a fehérbe halványulnak (`.szekcio-lagy`, `.szekcio-lagy-meleg`, `.fejlec-lagy`)
+- **saját visszatérő elem:** apró **mályva pont** listajelölőként és elválasztóként
+  (`components/Pont.tsx`) — a testvéroldal akvarell sávjának megfelelője
 - **feltűnően más hero:** ott középre zárt, itt **aszimmetrikus, kétoszlopos**, jobbra
-  eltolt logófelülettel
+  a hero képpel
+- **változatos szekcióritmus:** a szekciók szándékosan nem ugyanazt a sémát ismétlik —
+  van kétoszlopos fejléc, oldalra tett cím, lépcsőzetes oszlop és sorszámozott lista
 
 Minden szín és méret **design tokenként** van definiálva (`app/globals.css` → `:root`,
 onnan olvassa a `tailwind.config.ts`) — hardcode-olt érték nincs szétszórva a kódban.
@@ -146,6 +152,21 @@ SVG változat nem állt rendelkezésre. A favicon (`app/icon.png`), az iOS ikon
 (`app/apple-icon.png`) és az OG-kép (`app/opengraph-image.png`) ebből a logóból generált.
 
 ---
+
+## Telepítés Vercelre
+
+A repó importálható a Vercelen, külön beállítás nélkül — a Next.js projektet
+automatikusan felismeri (`npm run build`, App Router, statikus kimenet).
+
+Egyetlen környezeti változót érdemes megadni:
+
+| Változó | Érték | Miért |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | az éles cím, pl. `https://lobelle.hu` | Ebből épül a canonical link, a `sitemap.xml` és az OG-URL |
+
+Ha nincs megadva, a `lib/site.ts` a Vercel saját címét használja (`.vercel.app`),
+így a `.vercel.app` alatt futó oldal nem hivatkozik tévesen az éles domainre.
+Egyéni domain bekötése után állítsd be a változót az éles címre.
 
 ## Ellenőrzés
 
@@ -168,6 +189,6 @@ Az akadálymentességi és screenshot-szkript Playwrightot igényel (`npm i -D p
 - akadálymentesség — oldalanként pontosan egy `h1`, nincs szintugrás, minden képnek van
   `alt`-ja, minden űrlapmezőnek címkéje; az első Tab a „Ugrás a tartalomra” linkre áll
 - kontraszt — minden szöveg megfelel a WCAG AA-nak. Egyetlen kivétel szándékos: a
-  `/miert-a-lobelle` oldal nagy, arany `01`–`04` sorszámai `aria-hidden` dekorációk egy
-  rendezett listában, a sorrendet a lista szerkezete hordozza
+  `/miert-a-lobelle` és a `/kepzes/privat-oktatas` nagy, mályva `01`–`04` sorszámai
+  `aria-hidden` dekorációk egy rendezett listában — a sorrendet a lista szerkezete hordozza
 - nincs vízszintes túlcsordulás 360 / 390 / 1440 px szélességen

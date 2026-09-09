@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Csillanas from "./Csillanas";
 
 /**
  * A kategóriaoldalak üres állapota.
@@ -12,7 +11,6 @@ import Csillanas from "./Csillanas";
 export default function FeltoltesAlatt() {
   return (
     <div className="kartya-meleg mx-auto max-w-2xl text-center">
-      <Csillanas lukteto className="mx-auto h-6 w-6 text-arany" />
       <p className="cimke mt-5">Feltöltés alatt</p>
       <p className="mt-5 font-cim text-2xl leading-snug text-szilva">
         A kategória termékei hamarosan elérhetők.

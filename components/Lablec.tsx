@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import Csillanas from "./Csillanas";
 import { NAV, LEGAL_LINKS } from "@/lib/navigation";
 import {
   ADDRESS,
@@ -21,7 +20,7 @@ import {
  */
 export default function Lablec() {
   return (
-    <footer className="relative overflow-hidden border-t border-arany/25 bg-puder">
+    <footer className="lablec-lagy relative overflow-hidden">
       {/* Halvány arany ív a lábléc tetején */}
       <div
         aria-hidden="true"
@@ -124,9 +123,7 @@ export default function Lablec() {
           </div>
 
           <p className="mt-10 flex items-center justify-center gap-2.5 text-center">
-            <Csillanas className="h-2.5 w-2.5 text-arany" />
             <span className="cimke !text-[0.65rem]">© 2026 Lobelle · Minden jog fenntartva</span>
-            <Csillanas className="h-2.5 w-2.5 text-arany" />
           </p>
         </div>
       </div>

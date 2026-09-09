@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import Csillanas, { CsillanasMezo } from "@/components/Csillanas";
+import KepHelyorzo from "@/components/KepHelyorzo";
+import Pont from "@/components/Pont";
 import HirlevelUrlap from "@/components/HirlevelUrlap";
-import Logo from "@/components/Logo";
 import Reveal from "@/components/Reveal";
 import SzekcioCim from "@/components/SzekcioCim";
 import { KATEGORIAK } from "@/data/products";
@@ -18,6 +19,21 @@ export const metadata: Metadata = {
       "Implantátum minőségű titánium fülbelövő rendszerek és szakemberképzés. Biztonság, innováció, szakmaiság.",
   },
 };
+
+/**
+ * A hero képe.
+ *
+ * Tedd a saját fotódat a `public/` mappába (pl. `public/hero.jpg`), majd írd ide
+ * az útvonalát és egy leíró alt szöveget:
+ *
+ *   const HERO_KEP: string | null = "/hero.jpg";
+ *   const HERO_KEP_ALT = "Titánium fülbevaló közelről";
+ *
+ * Amíg `null`, jelölt képhely látszik a helyén — kitalált vagy készletfotót
+ * szándékosan nem teszünk ide.
+ */
+const HERO_KEP: string | null = null;
+const HERO_KEP_ALT = "";
 
 const PILLEREK = [
   {
@@ -57,126 +73,126 @@ export default function Fooldal() {
   return (
     <>
       {/*
-        HERO — ez az EGYETLEN feltűnő eltérés a testvéroldaltól.
-        A Szépítész Műhely hero-ja szigorúan középre zárt; ez itt szándékosan
-        aszimmetrikus: balra a szövegoszlop, jobbra a függőlegesen eltolt
-        logófelület. Lásd STYLE-ANALYSIS.md 7/f.
+        HERO — visszafogott, a képre épülő nyitány.
+        Nincs színátmenetes háttérmosás, nincs dekoratív ív és folt: a fehér
+        felület, a kép és a tipográfia viszi. A testvéroldal középre zárt
+        heróját itt a kétoszlopos, balra zárt elrendezés váltja.
       */}
-      <section className="relative overflow-hidden bg-femes-lagy">
-        <CsillanasMezo />
-        {/* Nagy, halvány arany ív a háttérben — visszatérő díszítés */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-[18rem] top-[-14rem] h-[46rem] w-[46rem] rounded-full border border-arany/25"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-40 bottom-[-16rem] h-[34rem] w-[34rem] rounded-full bg-barackpir/40 blur-3xl"
-        />
-
-        <div className="konteiner relative grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-32">
-          {/* Bal oszlop: szöveg, balra zárva */}
-          <div className="text-left">
-            <p className="flex animate-felszallas items-center gap-2.5">
-              <Csillanas className="h-3 w-3 text-arany" />
-              <span className="cimke">Üdvözlünk a Lobelle oldalán</span>
+      <section>
+        <div className="konteiner grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-24">
+          {/* Bal oszlop: szöveg */}
+          <div>
+            <p className="animate-felszallas text-sm text-szilva/70">
+              Üdvözlünk a Lobelle oldalán
             </p>
 
-            <h1 className="mt-7 max-w-xl animate-felszallas font-cim text-[2.6rem] font-normal leading-[1.1] text-szilva [animation-delay:120ms] sm:text-6xl">
+            <h1 className="mt-5 max-w-lg animate-felszallas font-cim text-[2.1rem] font-normal leading-[1.15] text-szilva [animation-delay:120ms] sm:text-[2.9rem]">
               Az innovatív füllyukasztás új generációja
             </h1>
 
-            <div className="mt-9 h-px w-40 animate-felszallas bg-hajszal-arany [animation-delay:200ms]" aria-hidden="true" />
-
-            <ul className="mt-8 flex animate-felszallas flex-wrap items-center gap-x-5 gap-y-3 [animation-delay:280ms]">
+            {/* Az eredeti hármas felirat — csendes, díszítés nélküli sorban */}
+            <ul className="mt-7 flex animate-felszallas flex-wrap items-center gap-x-3 gap-y-2 text-sm text-szilva/70 [animation-delay:200ms]">
               {["Biztonság", "Innováció", "Szakmaiság"].map((szo, i) => (
-                <li key={szo} className="flex items-center gap-5">
-                  <span className="cimke !text-[0.68rem] !text-szilva/70">{szo}</span>
-                  {i < 2 ? <Csillanas className="h-2.5 w-2.5 text-arany" /> : null}
+                <li key={szo} className="flex items-center gap-3">
+                  {szo}
+                  {i < 2 ? (
+                    <span
+                      aria-hidden="true"
+                      className="inline-block h-1 w-1 rounded-full bg-arany"
+                    />
+                  ) : null}
                 </li>
               ))}
             </ul>
 
-            <div className="mt-12 flex animate-felszallas flex-col gap-4 [animation-delay:360ms] sm:flex-row">
+            <div className="mt-9 flex animate-felszallas flex-wrap items-center gap-x-8 gap-y-4 [animation-delay:300ms]">
               <Link href="/termekek/ful-es-orrlyukaszto-keszulek" className="gomb-elsodleges">
                 Fedezd fel a rendszert
               </Link>
-              <Link href="/kepzes" className="gomb-korvonal">
-                Jelentkezz képzésre
+              <Link href="/kepzes" className="gomb-szoveg">
+                Jelentkezz képzésre <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
 
-          {/* Jobb oszlop: eltolt logófelület — az aszimmetria hordozója */}
-          <div className="relative animate-felszallas [animation-delay:440ms] lg:translate-y-10">
-            <div className="relative mx-auto max-w-md rounded-nagy border border-arany/30 bg-white/70 p-12 shadow-csillanas backdrop-blur-sm sm:p-16">
-              <Logo
-                valtozat="teljes"
+          {/* Jobb oszlop: a hero képe */}
+          <div className="animate-felszallas [animation-delay:400ms]">
+            {HERO_KEP ? (
+              <Image
+                src={HERO_KEP}
+                alt={HERO_KEP_ALT}
+                width={1000}
+                height={1250}
                 priority
-                sizes="(max-width: 1024px) 80vw, 420px"
-                className="h-auto w-full"
+                sizes="(max-width: 1024px) 92vw, 540px"
+                className="w-full rounded-2xl object-cover"
               />
-              <div className="hajszal-rovid mt-10" aria-hidden="true" />
-              <p className="mt-7 text-center font-cim text-lg italic leading-snug text-szilva/80">
-                „Ha egyszer titániumot használsz, nem térsz vissza máshoz.”
-              </p>
-            </div>
-
-            {/* Kilógó csillanások: megtörik a kártya szabályos formáját */}
-            <Csillanas
-              lukteto
-              className="absolute -left-4 top-10 h-9 w-9 text-arany/70 sm:-left-8 sm:h-12 sm:w-12"
-            />
-            <Csillanas
-              lukteto
-              className="absolute -bottom-5 right-6 h-6 w-6 text-malyva/60 sm:-bottom-8 sm:right-12 sm:h-8 sm:w-8"
-            />
+            ) : (
+              <KepHelyorzo felirat="Hero kép" arany="aspect-[4/5]" className="!rounded-2xl" />
+            )}
           </div>
         </div>
       </section>
 
-      {/* A három pillér */}
+      {/* A három pillér — kétoszlopos fejléc, lépcsőzetes oszlopokkal */}
       <section className="szekcio konteiner">
         <Reveal>
-          <SzekcioCim cimke="A márkáról" cim="Nem csupán rendszer. Szemlélet.">
-            A Lobelle ott kezdődik, ahol a kompromisszum véget ér. Magyarországon egyedülálló,
-            implantátum minőségű titánium fülbelövő rendszereket adunk a szakemberek kezébe — és
-            melléjük azt a tudást, amitől a szolgáltatásuk valóban prémium lesz.
-          </SzekcioCim>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20">
+            <div>
+              <span className="cimke">A márkáról</span>
+              <h2 className="mt-6 font-cim text-4xl font-normal leading-[1.1] text-szilva sm:text-5xl">
+                Nem csupán rendszer. Szemlélet.
+              </h2>
+            </div>
+            <p className="self-end text-[0.95rem] leading-[1.9] text-szilva/75">
+              A Lobelle ott kezdődik, ahol a kompromisszum véget ér. Magyarországon egyedülálló,
+              implantátum minőségű titánium fülbelövő rendszereket adunk a szakemberek kezébe — és
+              melléjük azt a tudást, amitől a szolgáltatásuk valóban prémium lesz.
+            </p>
+          </div>
         </Reveal>
 
-        <ul className="mt-16 grid gap-8 md:grid-cols-3">
+        <ul className="mt-20 grid gap-x-12 gap-y-14 md:grid-cols-3">
           {PILLEREK.map((pillér, i) => (
-            <li key={pillér.cim}>
-              <Reveal delay={i * 120} className="h-full">
-                <article className="kartya-meleg h-full text-center">
-                  <Csillanas className="mx-auto h-4 w-4 text-arany" />
-                  <h3 className="mt-5 font-cim text-2xl text-szilva">{pillér.cim}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-szilva/80">{pillér.szoveg}</p>
-                </article>
+            <li key={pillér.cim} className={i === 1 ? "md:mt-12" : i === 2 ? "md:mt-24" : ""}>
+              <Reveal delay={i * 120}>
+                <div className="border-t border-arany/40 pt-7">
+                  <h3 className="font-cim text-2xl text-szilva">{pillér.cim}</h3>
+                  <p className="mt-4 text-sm leading-[1.85] text-szilva/75">{pillér.szoveg}</p>
+                </div>
               </Reveal>
             </li>
           ))}
         </ul>
       </section>
 
-      {/* Titánium előnyök — meleg, púderes szekció */}
-      <section className="bg-puder">
-        <div className="szekcio konteiner">
+      {/* Titánium előnyök — oldalra tett cím, mellette kéthasábos lista */}
+      <section className="szekcio-lagy">
+        <div className="szekcio konteiner grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-24">
           <Reveal>
-            <SzekcioCim cimke="Anyag és technológia" cim="A titánium ereje">
-              A titánium jelenleg a világ egyik legbiztonságosabb fémje füllyukasztáshoz. Nem
-              véletlen, hogy orvosi implantátumoknál is ezt használják: gyorsabb gyógyulás,
-              kevesebb gyulladás, minimális irritáció.
-            </SzekcioCim>
+            <div className="lg:sticky lg:top-32">
+              <span className="cimke">Anyag és technológia</span>
+              <h2 className="mt-6 font-cim text-4xl font-normal leading-[1.1] text-szilva sm:text-5xl">
+                A titánium ereje
+              </h2>
+              <div className="hajszal mt-8 !w-24" aria-hidden="true" />
+              <p className="mt-8 text-[0.95rem] leading-[1.9] text-szilva/75">
+                A titánium jelenleg a világ egyik legbiztonságosabb fémje füllyukasztáshoz. Nem
+                véletlen, hogy orvosi implantátumoknál is ezt használják: gyorsabb gyógyulás,
+                kevesebb gyulladás, minimális irritáció.
+              </p>
+            </div>
           </Reveal>
 
-          <ul className="mt-16 grid gap-x-12 gap-y-11 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-12 sm:grid-cols-2">
             {TITANIUM_ELONYOK.map((elony, i) => (
-              <li key={elony.cim}>
-                <Reveal delay={(i % 3) * 100}>
+              <li
+                key={elony.cim}
+                className="border-b border-arany/25 py-7 first:pt-0 sm:[&:nth-child(2)]:pt-0"
+              >
+                <Reveal delay={(i % 2) * 100}>
                   <div className="flex gap-4">
-                    <Csillanas className="mt-1.5 h-3 w-3 shrink-0 text-arany" />
+                    <Pont className="mt-2.5" />
                     <div>
                       <h3 className="font-cim text-lg text-szilva">{elony.cim}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-szilva/75">{elony.szoveg}</p>
@@ -189,34 +205,41 @@ export default function Fooldal() {
         </div>
       </section>
 
-      {/* ASTM F136 kiemelt sáv — barackpír felület a testvéroldal sötét tömbje helyett */}
-      <section className="relative overflow-hidden bg-barackpir">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-arany/40"
-        />
-        <div className="konteiner relative py-20 text-center">
+      {/* ASTM F136 kiemelt sáv — melegebb tónus, a szélein a fehérbe halványulva */}
+      <section className="szekcio-lagy-meleg">
+        <div className="konteiner grid items-center gap-8 py-20 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] md:gap-16">
           <Reveal>
-            <p className="cimke !text-szilva/70">Prémium garancia</p>
-            <p className="mx-auto mt-6 max-w-2xl font-cim text-2xl leading-snug text-szilva md:text-3xl">
+            <p className="cimke !text-szilva/75">Prémium garancia</p>
+            <p className="mt-6 font-cim text-3xl leading-[1.2] text-szilva md:text-[2.6rem]">
               ASTM F136 szabvány <span aria-hidden="true">·</span> Grade 23 implantátum minőségű
               titán
             </p>
-            <div className="hajszal-rovid mt-8" aria-hidden="true" />
-            <p className="mt-6 text-sm text-szilva/80">
-              Szigorúan ellenőrzött, steril termékek — kompromisszumok nélkül.
-            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="border-arany/50 md:border-l md:pl-16">
+              <p className="text-sm leading-[1.9] text-szilva/85">
+                Szigorúan ellenőrzött, steril termékek — kompromisszumok nélkül.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Termékkategóriák */}
+      {/* Termékkategóriák — balra zárt fejléc, megtört rács */}
       <section className="szekcio konteiner">
         <Reveal>
-          <SzekcioCim cimke="Kollekció" cim="Termékkínálat">
-            Minden darab ugyanabból az alapanyagból, ugyanazzal az igényességgel készül — a
-            legkisebbeknek szánt első fülbevalótól a professzionális eszközökig.
-          </SzekcioCim>
+          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="cimke">Kollekció</span>
+              <h2 className="mt-6 font-cim text-4xl font-normal leading-[1.1] text-szilva sm:text-5xl">
+                Termékkínálat
+              </h2>
+            </div>
+            <p className="max-w-md text-[0.95rem] leading-[1.9] text-szilva/75">
+              Minden darab ugyanabból az alapanyagból, ugyanazzal az igényességgel készül — a
+              legkisebbeknek szánt első fülbevalótól a professzionális eszközökig.
+            </p>
+          </div>
         </Reveal>
 
         <ul className="mt-16 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
@@ -225,11 +248,8 @@ export default function Fooldal() {
               <Reveal delay={(i % 3) * 100} className="h-full">
                 <Link href={`/termekek/${kategoria.slug}`} className="group block h-full">
                   <article className="kartya flex h-full flex-col text-center hover:border-arany/50 hover:shadow-csillanas">
-                    <Csillanas className="mx-auto h-3.5 w-3.5 text-arany" />
-                    <h3 className="mt-4 font-cim text-xl text-szilva transition-colors duration-300 group-hover:text-szilva">
-                      {kategoria.rovidNev}
-                    </h3>
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-szilva/70">
+                    <h3 className="font-cim text-xl text-szilva">{kategoria.rovidNev}</h3>
+                    <p className="mt-4 flex-1 text-sm leading-relaxed text-szilva/75">
                       {kategoria.leiras}
                     </p>
                     <span className="mt-6 font-cim text-[0.68rem] uppercase tracking-cimke text-szilva/75 transition-colors duration-300 group-hover:text-szilva">
@@ -243,14 +263,14 @@ export default function Fooldal() {
         </ul>
 
         <Reveal>
-          <p className="mt-16 text-center font-cim text-lg italic text-szilva/70">
+          <p className="mt-16 border-t border-arany/30 pt-12 text-right font-cim text-xl italic text-szilva/70">
             A prémium vendég prémium minőséget vár.
           </p>
         </Reveal>
       </section>
 
       {/* Képzés teaser */}
-      <section className="bg-puder">
+      <section className="szekcio-lagy">
         <div className="szekcio konteiner grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <SzekcioCim
@@ -266,7 +286,7 @@ export default function Fooldal() {
             <ul className="mt-9 space-y-4 text-sm text-szilva/80">
               {KEPZES_PONTOK.map((pont) => (
                 <li key={pont} className="flex gap-3.5">
-                  <Csillanas className="mt-1 h-3 w-3 shrink-0 text-arany" />
+                  <Pont className="mt-2" />
                   <span className="leading-relaxed">{pont}</span>
                 </li>
               ))}
@@ -283,8 +303,8 @@ export default function Fooldal() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="kartya-meleg relative text-center !p-12">
-              <Csillanas lukteto className="absolute -right-3 -top-3 h-8 w-8 text-arany/70" />
+            {/* A kártya kilóg a rácsból — szándékos aszimmetria, nem tükörkép */}
+            <div className="kartya-meleg relative text-center !p-12 lg:-mr-8 lg:translate-y-6">
               <p className="cimke">Lobelle</p>
               <p className="mx-auto mt-7 max-w-sm font-cim text-2xl leading-snug text-szilva">
                 „Ha egyszer titániumot használsz, nem térsz vissza máshoz.”
@@ -296,15 +316,22 @@ export default function Fooldal() {
         </div>
       </section>
 
-      {/* Hírlevél */}
-      <section className="szekcio konteiner text-center">
+      {/* Hírlevél — szűk, zárlat jellegű blokk */}
+      <section className="szekcio konteiner">
         <Reveal>
-          <SzekcioCim cimke="Hírlevél" cim="Maradjunk kapcsolatban">
-            Iratkozz fel, hogy elsőként értesülj az új kollekciókról, képzési időpontokról és
-            szakmai újdonságokról.
-          </SzekcioCim>
-          <div className="mt-12">
-            <HirlevelUrlap />
+          <div className="mx-auto max-w-xl">
+            <div className="hajszal" aria-hidden="true" />
+            <span className="cimke mt-12 block">Hírlevél</span>
+            <h2 className="mt-5 font-cim text-3xl font-normal leading-[1.15] text-szilva sm:text-4xl">
+              Maradjunk kapcsolatban
+            </h2>
+            <p className="mt-6 text-[0.95rem] leading-[1.9] text-szilva/75">
+              Iratkozz fel, hogy elsőként értesülj az új kollekciókról, képzési időpontokról és
+              szakmai újdonságokról.
+            </p>
+            <div className="mt-10">
+              <HirlevelUrlap />
+            </div>
           </div>
         </Reveal>
       </section>

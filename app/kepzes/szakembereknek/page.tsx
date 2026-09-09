@@ -52,21 +52,20 @@ export default function SzakembereknekOldal() {
           <SzekcioCim cimke="Előnyök" cim="Mit kapsz a szakmai regisztrációval?" />
         </Reveal>
 
-        <ul className="mt-14 grid gap-8 sm:grid-cols-2">
+        {/* Hajszálvonalas leírólista — a cím balra, a magyarázat mellette */}
+        <dl className="mt-16">
           {ELONYOK.map((elony, i) => (
-            <li key={elony.cim}>
-              <Reveal delay={(i % 2) * 120} className="h-full">
-                <article className="kartya h-full">
-                  <h3 className="font-cim text-xl text-szilva">{elony.cim}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-szilva/75">{elony.szoveg}</p>
-                </article>
-              </Reveal>
-            </li>
+            <Reveal key={elony.cim} delay={i * 90}>
+              <div className="grid gap-4 border-t border-arany/30 py-9 last:border-b md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:gap-16">
+                <dt className="font-cim text-xl text-szilva">{elony.cim}</dt>
+                <dd className="text-[0.95rem] leading-[1.85] text-szilva/75">{elony.szoveg}</dd>
+              </div>
+            </Reveal>
           ))}
-        </ul>
+        </dl>
       </section>
 
-      <section className="bg-puder">
+      <section className="szekcio-lagy">
         <div className="szekcio-szuk konteiner">
           <Reveal>
             <div className="mx-auto max-w-3xl">

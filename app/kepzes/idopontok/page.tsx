@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
 import OldalFejlec from "@/components/OldalFejlec";
 import Reveal from "@/components/Reveal";
 import { ADDRESS } from "@/lib/site";
@@ -70,7 +69,6 @@ export default function IdopontokOldal() {
               <Reveal delay={(i % 2) * 120} className="h-full">
                 <article className="kartya-meleg flex h-full flex-col">
                   <p className="flex items-center gap-2.5">
-                    <Csillanas className="h-3 w-3 text-arany" />
                     <span className="cimke">Helyszín</span>
                   </p>
                   <h2 className="mt-3 font-cim text-2xl text-szilva">{idopont.varos}</h2>

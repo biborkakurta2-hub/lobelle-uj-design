@@ -1,10 +1,8 @@
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
 
 export default function NemTalalhato() {
   return (
     <section className="konteiner py-32 text-center sm:py-40">
-      <Csillanas className="mx-auto h-6 w-6 text-arany" />
       <p className="cimke mt-6">404</p>
       <h1 className="mt-5 font-cim text-4xl font-normal text-szilva">
         Ez az oldal nem található

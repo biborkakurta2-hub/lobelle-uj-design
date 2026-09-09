@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
 import OldalFejlec from "@/components/OldalFejlec";
 import Reveal from "@/components/Reveal";
 import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF } from "@/lib/site";
@@ -32,7 +31,6 @@ export default function KosarOldal() {
       <section className="szekcio-szuk konteiner">
         <Reveal>
           <div className="kartya-meleg mx-auto max-w-2xl text-center">
-            <Csillanas lukteto className="mx-auto h-6 w-6 text-arany" />
             <p className="cimke mt-5">A kosár üres</p>
             <p className="mt-5 font-cim text-2xl leading-snug text-szilva">
               A webshop feltöltése folyamatban van.

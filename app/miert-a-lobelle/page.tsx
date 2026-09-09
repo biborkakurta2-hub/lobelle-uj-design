@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Csillanas from "@/components/Csillanas";
 import OldalFejlec from "@/components/OldalFejlec";
 import Reveal from "@/components/Reveal";
 
@@ -57,7 +56,7 @@ export default function MiertALobelleOldal() {
               <Reveal delay={i * 80}>
                 <div className="grid gap-6 border-t border-arany/30 py-14 last:border-b sm:grid-cols-[8rem_1fr] sm:gap-10">
                   <span
-                    className="font-cim text-5xl font-normal text-arany sm:text-6xl"
+                    className="font-cim text-5xl font-normal text-malyva sm:text-6xl"
                     aria-hidden="true"
                   >
                     {pillér.szam}
@@ -76,14 +75,9 @@ export default function MiertALobelleOldal() {
       </section>
 
       {/* Záró idézet */}
-      <section className="relative overflow-hidden bg-puder">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[24rem] w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-arany/25"
-        />
-        <div className="szekcio konteiner relative text-center">
+      <section className="szekcio-lagy">
+        <div className="szekcio konteiner text-center">
           <Reveal>
-            <Csillanas lukteto className="mx-auto h-6 w-6 text-arany" />
             <blockquote className="mx-auto mt-9 max-w-2xl font-cim text-2xl leading-[1.4] text-szilva md:text-4xl">
               „A minőség nem luxus. A biztonság nem opció.
               <br className="hidden md:block" /> A szakmaiság nem kompromisszum kérdése.”

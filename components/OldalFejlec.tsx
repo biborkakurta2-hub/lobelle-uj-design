@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Csillanas from "./Csillanas";
 
 /**
  * Aloldalak fejléce — meleg, púderes felület halvány arany ívvel és
@@ -15,24 +14,20 @@ export default function OldalFejlec({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-femes-meleg">
+    <section className="relative overflow-hidden fejlec-lagy">
       {/* Halvány arany ív — a Lobelle finom, visszatérő díszítése */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-52 left-1/2 h-[26rem] w-[52rem] -translate-x-1/2 rounded-[50%] border border-arany/30"
       />
-      <Csillanas
-        lukteto
-        className="pointer-events-none absolute right-[8%] top-[22%] h-6 w-6 text-arany/40"
-      />
-      <Csillanas
-        lukteto
-        className="pointer-events-none absolute left-[7%] top-[62%] h-3.5 w-3.5 text-malyva/40"
+      {/* Lágy rózsaszín derengés — a Szépítész Műhely mályva foltjainak megfelelője */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 -top-20 h-72 w-72 rounded-full bg-malyva/20 blur-3xl"
       />
 
       <div className="konteiner relative py-20 text-center sm:py-28">
         <p className="flex items-center justify-center gap-2.5">
-          <Csillanas className="h-3 w-3 text-arany" />
           <span className="cimke">{cimke}</span>
         </p>
 
