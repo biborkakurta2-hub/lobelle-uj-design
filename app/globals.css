@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * ============================================================
+ *  LOBELLE – DESIGN TOKENEK
+ * ============================================================
+ *  Minden érték itt, egy helyen. A Tailwind config ezekre hivatkozik,
+ *  így hardcode-olt szín vagy méret nem szóródik szét a komponensekben.
+ *
+ *  A paletta AZONOS a Szépítész Műhelyével — lásd STYLE-ANALYSIS.md.
+ *  Ami eltér: a súlyozás (mi a nagy felület és mi az akcent), a
+ *  sugarak, a betűköz és a dekoratív motívum.
+ */
+:root {
+  /* --- Márkapaletta: az öt közös szín, változtatás nélkül ---
+     RGB csatornákként tárolva, hogy a Tailwind átlátszóság-módosítói
+     (pl. `text-szilva/70`) működjenek rajtuk. */
+  --szin-puder: 249 242 237; /* #F9F2ED */
+  --szin-malyva: 185 139 165; /* #B98BA5 */
+  --szin-barackpir: 239 213 195; /* #EFD5C3 */
+  --szin-arany: 217 180 138; /* #D9B48A */
+  --szin-szilva: 43 30 46; /* #2B1E2E */
+
+  /* Ugyanazok kész színértékként — gradiensekhez, keretekhez */
+  --puder: rgb(var(--szin-puder));
+  --malyva: rgb(var(--szin-malyva));
+  --barackpir: rgb(var(--szin-barackpir));
+  --arany: rgb(var(--szin-arany));
+  --szilva: rgb(var(--szin-szilva));
+
+  /* --- Szemantikus szerepek (itt történik az ÁTSÚLYOZÁS) --- */
+  --felulet-alap: #ffffff; /* domináns háttér (a Szépítész Műhelynél ez a púder) */
+  --felulet-lagy: var(--puder); /* másodlagos, lefokozva akcentszerepbe */
+  --felulet-meleg: var(--barackpir); /* NAGY felület (ott csak kártyaszín volt) */
+  --akcent: var(--arany); /* elsődleges akcent — ékszer-fém */
+  --akcent-masodlagos: var(--malyva); /* rózsás, feminin részletek */
+  --szoveg: var(--szilva);
+  --keret: rgb(var(--szin-szilva) / 0.1);
+  --keret-arany: rgb(var(--szin-arany) / 0.45);
+
+  /* --- Tipográfia --- */
+  --betukoz-cimke: 0.2em; /* tágabb, mint a Szépítész Műhely 0.14em-je */
+  --betukoz-gomb: 0.12em;
+
+  /* --- Formanyelv --- */
+  --sugar-kartya: 2rem; /* kerekebb, mint az ottani 1.5rem */
+  --sugar-nagy: 2.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-szoveg font-light text-szilva antialiased;
+  }
+
+  /* Horgonyra ugrásnál a sticky fejléc ne takarja ki a szekciót */
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
+  ::selection {
+    background-color: rgba(217, 180, 138, 0.35);
+    color: var(--szoveg);
+  }
+
+  strong {
+    @apply font-medium;
+  }
+
+  /* Látható, márkába illő fókuszjelölés a billentyűzetes navigációhoz */
+  :focus-visible {
+    outline: 2px solid var(--szin-malyva);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ---------- Elrendezés ---------- */
+
+  .konteiner {
+    @apply mx-auto w-full max-w-tartalom px-5 sm:px-8;
+  }
+
+  /* Több fehér tér, mint a Szépítész Műhely py-20/sm:py-28 ritmusánál */
+  .szekcio {
+    @apply py-24 sm:py-32;
+  }
+
+  .szekcio-szuk {
+    @apply py-16 sm:py-24;
+  }
+
+  /* ---------- Tipográfia ---------- */
+
+  /* Kiskapitális szekciócímke — tágabb betűközzel, mint a testvéroldalon */
+  .cimke {
+    @apply font-cim text-[0.7rem] uppercase tracking-cimke text-szilva/80;
+  }
+
+  /* ---------- Gombok ---------- */
+
+  /*
+   * Elsődleges gomb: arany felület, szilva felirat.
+   * Kontraszt 8,16:1 — WCAG AAA. Az arany itt az elsődleges akcent
+   * (a Szépítész Műhelynél a sötét szilva tölti be ezt a szerepet).
+   */
+  .gomb-elsodleges {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-arany px-8 py-4
+           font-cim text-xs uppercase tracking-gomb text-szilva shadow-lagy
+           transition-all duration-300 hover:bg-malyva
+           focus-visible:outline-offset-4;
+  }
+
+  /* Másodlagos: hajszálvékony keret, átlátszó felület */
+  .gomb-korvonal {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-szilva/25
+           bg-transparent px-8 py-4 font-cim text-xs uppercase tracking-gomb text-szilva
+           transition-all duration-300 hover:border-arany hover:bg-arany/15;
+  }
+
+  /* Harmadik szint: sima szöveges link nyíllal */
+  .gomb-szoveg {
+    @apply inline-flex items-center gap-2 font-cim text-xs uppercase tracking-gomb
+           text-szilva/80 transition-colors duration-300 hover:text-szilva;
+  }
+
+  /* ---------- Kártyák ---------- */
+
+  .kartya {
+    @apply rounded-kartya border border-szilva/10 bg-white p-8 shadow-kartya
+           transition-all duration-300;
+  }
+
+  /* Meleg, púderes kártya — ebből van sok, ez adja az oldal karakterét */
+  .kartya-meleg {
+    @apply rounded-kartya border border-arany/25 bg-femes-lagy p-8 shadow-csillanas
+           transition-all duration-300;
+  }
+
+  /* ---------- Hajszálvonal elválasztók (fémes csillanás) ---------- */
+
+  .hajszal {
+    @apply h-px w-full bg-hajszal-arany;
+  }
+
+  .hajszal-rovid {
+    @apply mx-auto h-px w-24 bg-hajszal-roze;
+  }
+
+  /* ---------- Űrlapmezők ---------- */
+
+  .mezo {
+    @apply w-full rounded-2xl border border-szilva/15 bg-white px-5 py-3.5 text-sm
+           text-szilva transition-colors duration-300 placeholder:text-szilva/70
+           focus:border-arany focus:outline-none focus-visible:outline-none;
+  }
+
+  .mezo-hiba {
+    @apply mt-2 text-xs font-medium text-szilva;
+  }
+}
+
+/* Akadálymentesség: mozgáscsökkentés esetén minden animáció áll */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
